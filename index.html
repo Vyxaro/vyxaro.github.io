@@ -3,36 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vyxaro.net | Dein Minecraft Server</title>
+    <title>Vyxaro.net | Minecraft Server</title>
     <style>
-        /* Basis-Einstellungen */
+        :root {
+            --bg-color: #0b0b0e;
+            --card-bg: rgba(26, 26, 30, 0.65);
+            --accent-color: #00f0ff;
+            --accent-glow: rgba(0, 240, 255, 0.4);
+            --text-main: #f1f1f4;
+            --text-muted: #a1a1aa;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: #121214;
-            color: #e1e1e6;
-            line-height: 1.6;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
         }
 
-        a {
-            color: #00b4d8;
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-
-        a:hover {
-            color: #90e0ef;
-        }
-
-        /* Navigation */
+        /* Modern Navigation */
         nav {
-            background-color: #1a1a1e;
-            padding: 20px 50px;
+            backdrop-filter: blur(12px);
+            background: rgba(11, 11, 14, 0.75);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 20px 40px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -40,208 +41,243 @@
             width: 100%;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.3);
         }
 
-        nav .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #00b4d8;
+        .logo {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            color: #fff;
+            text-transform: uppercase;
         }
+        .logo span { color: var(--accent-color); }
 
-        nav ul {
+        .nav-links {
             display: flex;
+            align-items: center;
             list-style: none;
+            gap: 25px;
         }
 
-        nav ul li {
-            margin-left: 20px;
-        }
-
-        nav ul li a {
-            color: #e1e1e6;
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
             font-weight: 500;
+            transition: color 0.3s;
         }
 
-        /* Hero-Bereich */
+        .nav-links a:hover { color: #fff; }
+
+        /* Language Switcher Button */
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+        .lang-btn:hover {
+            background: var(--accent-color);
+            color: #000;
+            box-shadow: 0 0 15px var(--accent-glow);
+        }
+
+        /* Hero Section */
         .hero {
-            height: 80vh;
+            height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            background: linear-gradient(rgba(18, 18, 20, 0.8), rgba(18, 18, 20, 1)), url('https://images.unsplash.com/photo-1607988795691-3d0147b43231?q=80&w=1920') no-repeat center center/cover;
+            position: relative;
+            background: radial-gradient(circle at center, rgba(0, 240, 255, 0.08) 0%, transparent 70%);
             padding: 0 20px;
-            margin-top: 60px;
         }
 
         .hero h1 {
-            font-size: 64px;
-            margin-bottom: 10px;
-            color: #fff;
-            text-shadow: 0 4px 10px rgba(0, 180, 216, 0.5);
+            font-size: clamp(48px, 8vw, 90px);
+            font-weight: 900;
+            letter-spacing: -2px;
+            line-height: 1.1;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 30%, var(--accent-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .hero p {
-            font-size: 20px;
-            margin-bottom: 30px;
-            color: #a8a8b3;
+            font-size: clamp(16px, 3vw, 22px);
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
         }
 
+        /* Interactive IP Box */
         .ip-box {
-            background-color: #202024;
-            padding: 15px 30px;
-            border-radius: 8px;
-            border: 2px solid #00b4d8;
-            font-size: 22px;
-            font-weight: bold;
+            background: var(--card-bg);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 240, 255, 0.2);
+            padding: 16px 32px;
+            border-radius: 12px;
+            font-size: 20px;
+            font-weight: 700;
+            letter-spacing: 1px;
             cursor: pointer;
-            transition: transform 0.2s, background-color 0.2s;
+            transition: transform 0.2s, border 0.3s, box-shadow 0.3s;
         }
 
         .ip-box:hover {
-            transform: scale(1.05);
-            background-color: #29292e;
+            transform: translateY(-3px);
+            border-color: var(--accent-color);
+            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
         }
 
-        /* Content-Bereiche */
+        /* Features Section */
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 80px 20px;
+            padding: 100px 20px;
         }
 
-        section {
-            margin-bottom: 60px;
-        }
-
-        h2 {
+        .section-title {
             font-size: 36px;
-            margin-bottom: 20px;
-            color: #fff;
-            border-bottom: 2px solid #29292e;
-            padding-bottom: 10px;
-        }
-
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
-        .feature-card {
-            background-color: #1a1a1e;
-            padding: 25px;
-            border-radius: 8px;
-            border: 1px solid #29292e;
-        }
-
-        .feature-card h3 {
-            color: #00b4d8;
-            margin-bottom: 10px;
-        }
-
-        /* Impressum & Footer */
-        footer {
-            background-color: #1a1a1e;
+            font-weight: 800;
+            margin-bottom: 50px;
             text-align: center;
-            padding: 40px 20px;
-            font-size: 14px;
-            color: #737380;
-            border-top: 1px solid #29292e;
         }
 
-        .impressum-content {
-            background-color: #1a1a1e;
-            padding: 30px;
-            border-radius: 8px;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            padding: 40px;
+            border-radius: 16px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .card h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .card p {
+            color: var(--text-muted);
             font-size: 15px;
+            line-height: 1.6;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            nav { padding: 20px; }
-            .hero h1 { font-size: 40px; }
-            .hero p { font-size: 16px; }
-            .ip-box { font-size: 18px; }
+        /* Footer */
+        footer {
+            background: #060608;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+            font-size: 14px;
+            color: var(--text-muted);
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            margin-left: 15px;
+            font-weight: 600;
+        }
+
+        /* Language Toggle Helper */
+        [lang="en"] .lang-de, [lang="de"] .lang-en {
+            display: none;
         }
     </style>
 </head>
-<body>
+<body lang="de">
 
     <nav>
-        <div class="logo">Vyxaro.net</div>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#impressum">Impressum</a></li>
+        <div class="logo">Vyxaro<span>.net</span></div>
+        <ul class="nav-links">
+            <li><a href="#home" class="lang-de">Start</a><a href="#home" class="lang-en">Home</a></li>
+            <li><a href="#features" class="lang-de">Features</a><a href="#features" class="lang-en">Features</a></li>
+            <li><button class="lang-btn" onclick="toggleLanguage()">EN</button></li>
         </ul>
     </nav>
 
     <div class="hero" id="home">
-        <h1>Vyxaro.net</h1>
-        <p>Dein ultimatives Minecraft-Erlebnis startet hier!</p>
+        <h1 class="lang-de">Dein nächstes Abenteuer.</h1>
+        <h1 class="lang-en">Your Next Adventure.</h1>
+        
+        <p class="lang-de">Tritt einer einzigartigen Minecraft-Community bei. Erlebe Performance ohne Kompromisse.</p>
+        <p class="lang-en">Join a unique Minecraft community. Experience performance without compromises.</p>
+        
         <div class="ip-box" onclick="copyIP()">IP: Vyxaro.net</div>
     </div>
 
-    <div class="container">
+    <div class="container" id="features">
+        <h2 class="section-title lang-de">Warum Vyxaro?</h2>
+        <h2 class="section-title lang-en">Why Vyxaro?</h2>
         
-        <section id="features">
-            <h2>Über unseren Server</h2>
-            <p>Willkommen auf Vyxaro! Wir bieten dir eine einzigartige Community, lagfreie Performance und jede Menge Spaß. Schau dir an, was uns besonders macht:</p>
-            
-            <div class="features">
-                <div class="feature-card">
-                    <h3>Spielmodi</h3>
-                    <p>Egal ob Citybuild, Survival oder spannende Minigames – bei uns findest du genau das, worauf du Lust hast.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>Aktive Community</h3>
-                    <p>Finde neue Freunde, gründe Clans und nimm an unseren regelmäßigen Community-Events teil.</p>
-                </div>
-                <div class="feature-card">
-                    <h3>24/7 Online</h3>
-                    <p>Unser Server läuft auf High-End-Hardware, damit du rund um die Uhr ohne Ruckler durchstarten kannst.</p>
-                </div>
+        <div class="grid">
+            <div class="card">
+                <h3 class="lang-de">Perfekte Performance</h3>
+                <h3 class="lang-en">Lag-Free Play</h3>
+                <p class="lang-de">Unsere High-End Hardware sichert dir absolut flüssiges Gameplay ohne nervige Ruckler.</p>
+                <p class="lang-en">Our high-end server hardware ensures perfectly smooth gameplay with zero lag.</p>
             </div>
-        </section>
-
-        <section id="impressum">
-            <h2>Impressum</h2>
-            <div class="impressum-content">
-                <p><strong>Angaben gemäß § 5 TMG:</strong></p>
-                <p>[Dein Vorname] [Dein Nachname]<br>
-                [Deine Straße und Hausnummer]<br>
-                [Deine PLZ und Ort]</p>
-                
-                <p style="margin-top: 15px;"><strong>Kontakt:</strong></p>
-                <p>E-Mail: [Deine E-Mail-Adresse]<br>
-                Telefon: [Deine Telefonnummer - optional bei rein privaten Seiten, aber E-Mail ist Pflicht]</p>
-
-                <p style="margin-top: 15px;"><strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong></p>
-                <p>[Dein Vorname] [Dein Nachname]<br>
-                [Deine Adresse]</p>
-
-                <p style="margin-top: 15px; font-size: 12px; color: #737380;">
-                    <em>Hinweis: Wenn du unter 18 bist, solltest du das Erstellen des Impressums kurz mit deinen Eltern absprechen, da dort deine echten Daten stehen müssen, sobald die Seite öffentlich erreichbar ist.</em>
-                </p>
+            <div class="card">
+                <h3 class="lang-de">Einzigartige Modi</h3>
+                <h3 class="lang-en">Custom Game Modes</h3>
+                <p class="lang-de">Entdecke maßgeschneiderte Systeme und Welten, die du so nirgendwo anders findest.</p>
+                <p class="lang-en">Explore custom-built systems and worlds tailored specifically for our community.</p>
             </div>
-        </section>
-
+            <div class="card">
+                <h3 class="lang-de">Starke Community</h3>
+                <h3 class="lang-en">Great Community</h3>
+                <p class="lang-de">Finde neue Freunde, schließe dich Clans an und nimm an regelmäßigen Events teil.</p>
+                <p class="lang-en">Make new friends, form powerful clans, and participate in weekly events.</p>
+            </div>
+        </div>
     </div>
 
     <footer>
-        <p>&copy; 2026 Vyxaro.net. Diese Website steht in keiner Verbindung mit Mojang AB oder Microsoft.</p>
+        <span class="lang-de">&copy; 2026 Vyxaro.net. Keine Verbindung zu Mojang/Microsoft.</span>
+        <span class="lang-en">&copy; 2026 Vyxaro.net. Not affiliated with Mojang/Microsoft.</span>
+        <a href="https://vyxaro.github.io/legal/" class="lang-de">Impressum & Datenschutz</a>
+        <a href="https://vyxaro.github.io/legal/" class="lang-en">Legal Notice</a>
     </footer>
 
     <script>
+        // Sprachwechsler Funktion
+        function toggleLanguage() {
+            const body = document.body;
+            const btn = document.querySelector('.lang-btn');
+            if (body.getAttribute('lang') === 'de') {
+                body.setAttribute('lang', 'en');
+                btn.textContent = 'DE';
+            } else {
+                body.setAttribute('lang', 'de');
+                btn.textContent = 'EN';
+            }
+        }
+
+        // IP Kopieren
         function copyIP() {
             navigator.clipboard.writeText("Vyxaro.net");
-            alert("Server-IP 'Vyxaro.net' wurde in die Zwischenablage kopiert!");
+            alert("IP Vyxaro.net copied to clipboard! / kopiert!");
         }
     </script>
-
 </body>
 </html>
