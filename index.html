@@ -1,283 +1,313 @@
 <!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vyxaro.net | Minecraft Server</title>
-    <style>
-        :root {
-            --bg-color: #0b0b0e;
-            --card-bg: rgba(26, 26, 30, 0.65);
-            --accent-color: #00f0ff;
-            --accent-glow: rgba(0, 240, 255, 0.4);
-            --text-main: #f1f1f4;
-            --text-muted: #a1a1aa;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
-            scroll-behavior: smooth;
-        }
+<title>Vyxaro Network</title>
+<meta name="description" content="Vyxaro Network - Premium Minecraft Minigame Network">
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-        }
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
 
-        /* Modern Navigation */
-        nav {
-            backdrop-filter: blur(12px);
-            background: rgba(11, 11, 14, 0.75);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-        }
+body{
+    background:#0b0f1a;
+    color:white;
+    overflow-x:hidden;
+}
 
-        .logo {
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            color: #fff;
-            text-transform: uppercase;
-        }
-        .logo span { color: var(--accent-color); }
+html{
+    scroll-behavior:smooth;
+}
 
-        .nav-links {
-            display: flex;
-            align-items: center;
-            list-style: none;
-            gap: 25px;
-        }
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    background:
+        radial-gradient(circle at 20% 20%, rgba(0,170,255,.15), transparent 25%),
+        radial-gradient(circle at 80% 80%, rgba(140,0,255,.15), transparent 25%);
+    z-index:-1;
+}
 
-        .nav-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
+nav{
+    position:fixed;
+    top:0;
+    width:100%;
+    padding:20px 50px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:rgba(0,0,0,.35);
+    backdrop-filter:blur(10px);
+    z-index:1000;
+}
 
-        .nav-links a:hover { color: #fff; }
+.logo{
+    font-size:28px;
+    font-weight:bold;
+    letter-spacing:3px;
+}
 
-        /* Language Switcher Button */
-        .lang-btn {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            color: #fff;
-            padding: 6px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 13px;
-            transition: all 0.3s;
-        }
-        .lang-btn:hover {
-            background: var(--accent-color);
-            color: #000;
-            box-shadow: 0 0 15px var(--accent-glow);
-        }
+.nav-links{
+    display:flex;
+    gap:25px;
+}
 
-        /* Hero Section */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            position: relative;
-            background: radial-gradient(circle at center, rgba(0, 240, 255, 0.08) 0%, transparent 70%);
-            padding: 0 20px;
-        }
+.nav-links a{
+    color:white;
+    text-decoration:none;
+    transition:.3s;
+}
 
-        .hero h1 {
-            font-size: clamp(48px, 8vw, 90px);
-            font-weight: 900;
-            letter-spacing: -2px;
-            line-height: 1.1;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #fff 30%, var(--accent-color));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+.nav-links a:hover{
+    color:#00aaff;
+}
 
-        .hero p {
-            font-size: clamp(16px, 3vw, 22px);
-            color: var(--text-muted);
-            max-width: 600px;
-            margin-bottom: 40px;
-        }
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:0 20px;
+}
 
-        /* Interactive IP Box */
-        .ip-box {
-            background: var(--card-bg);
-            backdrop-filter: blur(8px);
-            border: 1px solid rgba(0, 240, 255, 0.2);
-            padding: 16px 32px;
-            border-radius: 12px;
-            font-size: 20px;
-            font-weight: 700;
-            letter-spacing: 1px;
-            cursor: pointer;
-            transition: transform 0.2s, border 0.3s, box-shadow 0.3s;
-        }
+.hero-content h1{
+    font-size:70px;
+    margin-bottom:20px;
+}
 
-        .ip-box:hover {
-            transform: translateY(-3px);
-            border-color: var(--accent-color);
-            box-shadow: 0 10px 30px rgba(0, 240, 255, 0.15);
-        }
+.hero-content p{
+    font-size:20px;
+    color:#cfcfcf;
+    margin-bottom:30px;
+}
 
-        /* Features Section */
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 100px 20px;
-        }
+.buttons{
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
 
-        .section-title {
-            font-size: 36px;
-            font-weight: 800;
-            margin-bottom: 50px;
-            text-align: center;
-        }
+.btn{
+    padding:15px 30px;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+    text-decoration:none;
+    color:white;
+}
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+.primary{
+    background:#00aaff;
+}
 
-        .card {
-            background: var(--card-bg);
-            border: 1px solid rgba(255, 255, 255, 0.03);
-            padding: 40px;
-            border-radius: 16px;
-            transition: transform 0.3s, border-color 0.3s;
-        }
+.secondary{
+    background:#8c00ff;
+}
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(255, 255, 255, 0.1);
-        }
+.btn:hover{
+    transform:translateY(-4px);
+}
 
-        .card h3 {
-            font-size: 22px;
-            margin-bottom: 15px;
-            color: #fff;
-        }
+.ip-box{
+    margin-top:30px;
+    padding:15px;
+    background:rgba(255,255,255,.05);
+    border-radius:12px;
+    display:inline-block;
+}
 
-        .card p {
-            color: var(--text-muted);
-            font-size: 15px;
-            line-height: 1.6;
-        }
+section{
+    padding:100px 20px;
+    max-width:1200px;
+    margin:auto;
+}
 
-        /* Footer */
-        footer {
-            background: #060608;
-            padding: 40px 20px;
-            text-align: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-            font-size: 14px;
-            color: var(--text-muted);
-        }
+.section-title{
+    text-align:center;
+    font-size:40px;
+    margin-bottom:50px;
+}
 
-        footer a {
-            color: var(--accent-color);
-            text-decoration: none;
-            margin-left: 15px;
-            font-weight: 600;
-        }
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
 
-        /* Language Toggle Helper */
-        [lang="en"] .lang-de, [lang="de"] .lang-en {
-            display: none;
-        }
-    </style>
+.card{
+    background:rgba(255,255,255,.05);
+    padding:30px;
+    border-radius:20px;
+    transition:.3s;
+    text-align:center;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+footer{
+    text-align:center;
+    padding:40px;
+    background:rgba(255,255,255,.03);
+}
+
+.lang-switch{
+    cursor:pointer;
+    padding:10px 18px;
+    border-radius:10px;
+    background:#111827;
+}
+
+@media(max-width:768px){
+    .hero-content h1{
+        font-size:42px;
+    }
+
+    nav{
+        padding:20px;
+        flex-direction:column;
+        gap:15px;
+    }
+
+    .nav-links{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+}
+</style>
 </head>
-<body lang="de">
+<body>
 
-    <nav>
-        <div class="logo">Vyxaro<span>.net</span></div>
-        <ul class="nav-links">
-            <li><a href="#home" class="lang-de">Start</a><a href="#home" class="lang-en">Home</a></li>
-            <li><a href="#features" class="lang-de">Features</a><a href="#features" class="lang-en">Features</a></li>
-            <li><button class="lang-btn" onclick="toggleLanguage()">EN</button></li>
-        </ul>
-    </nav>
+<nav>
+    <div class="logo">VYXARO</div>
 
-    <div class="hero" id="home">
-        <h1 class="lang-de">Dein nächstes Abenteuer.</h1>
-        <h1 class="lang-en">Your Next Adventure.</h1>
-        
-        <p class="lang-de">Tritt einer einzigartigen Minecraft-Community bei. Erlebe Performance ohne Kompromisse.</p>
-        <p class="lang-en">Join a unique Minecraft community. Experience performance without compromises.</p>
-        
-        <div class="ip-box" onclick="copyIP()">IP: Vyxaro.net</div>
+    <div class="nav-links">
+        <a href="#about" id="navAbout">About</a>
+        <a href="#games" id="navGames">Games</a>
+        <a href="#join" id="navJoin">Join</a>
+        <a href="LEGAL_LINK">Legal</a>
     </div>
 
-    <div class="container" id="features">
-        <h2 class="section-title lang-de">Warum Vyxaro?</h2>
-        <h2 class="section-title lang-en">Why Vyxaro?</h2>
-        
-        <div class="grid">
-            <div class="card">
-                <h3 class="lang-de">Perfekte Performance</h3>
-                <h3 class="lang-en">Lag-Free Play</h3>
-                <p class="lang-de">Unsere High-End Hardware sichert dir absolut flüssiges Gameplay ohne nervige Ruckler.</p>
-                <p class="lang-en">Our high-end server hardware ensures perfectly smooth gameplay with zero lag.</p>
-            </div>
-            <div class="card">
-                <h3 class="lang-de">Einzigartige Modi</h3>
-                <h3 class="lang-en">Custom Game Modes</h3>
-                <p class="lang-de">Entdecke maßgeschneiderte Systeme und Welten, die du so nirgendwo anders findest.</p>
-                <p class="lang-en">Explore custom-built systems and worlds tailored specifically for our community.</p>
-            </div>
-            <div class="card">
-                <h3 class="lang-de">Starke Community</h3>
-                <h3 class="lang-en">Great Community</h3>
-                <p class="lang-de">Finde neue Freunde, schließe dich Clans an und nimm an regelmäßigen Events teil.</p>
-                <p class="lang-en">Make new friends, form powerful clans, and participate in weekly events.</p>
-            </div>
+    <div class="lang-switch" onclick="toggleLang()">DE / EN</div>
+</nav>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1 id="heroTitle">VYXARO NETWORK</h1>
+        <p id="heroText">
+            Dein nächstes Minecraft Minigame Abenteuer
+        </p>
+
+        <div class="buttons">
+            <button class="btn primary" onclick="copyIP()" id="playBtn">
+                Jetzt spielen
+            </button>
+
+            <a href="DISCORD_LINK" class="btn secondary" id="discordBtn">
+                Discord
+            </a>
+        </div>
+
+        <div class="ip-box">
+            play.vyxaro.net
         </div>
     </div>
+</section>
 
-    <footer>
-        <span class="lang-de">&copy; 2026 Vyxaro.net. Keine Verbindung zu Mojang/Microsoft.</span>
-        <span class="lang-en">&copy; 2026 Vyxaro.net. Not affiliated with Mojang/Microsoft.</span>
-        <a href="https://vyxaro.github.io/legal/" class="lang-de">Impressum & Datenschutz</a>
-        <a href="https://vyxaro.github.io/legal/" class="lang-en">Legal Notice</a>
-    </footer>
+<section id="about">
+    <h2 class="section-title" id="aboutTitle">Über uns</h2>
 
-    <script>
-        // Sprachwechsler Funktion
-        function toggleLanguage() {
-            const body = document.body;
-            const btn = document.querySelector('.lang-btn');
-            if (body.getAttribute('lang') === 'de') {
-                body.setAttribute('lang', 'en');
-                btn.textContent = 'DE';
-            } else {
-                body.setAttribute('lang', 'de');
-                btn.textContent = 'EN';
-            }
-        }
+    <p id="aboutText" style="text-align:center; max-width:800px; margin:auto;">
+        Vyxaro ist ein modernes Minecraft Minigame Network mit innovativen
+        Spielmodi, kompetitiven Systemen und einer aktiven Community.
+    </p>
+</section>
 
-        // IP Kopieren
-        function copyIP() {
-            navigator.clipboard.writeText("Vyxaro.net");
-            alert("IP Vyxaro.net copied to clipboard! / kopiert!");
-        }
-    </script>
+<section id="games">
+    <h2 class="section-title" id="gamesTitle">Spielmodi</h2>
+
+    <div class="cards">
+        <div class="card">BedWars</div>
+        <div class="card">SkyWars</div>
+        <div class="card">Duels</div>
+        <div class="card">MLGRush</div>
+        <div class="card">FFA</div>
+        <div class="card">Events</div>
+    </div>
+</section>
+
+<section id="join">
+    <h2 class="section-title" id="joinTitle">Jetzt beitreten</h2>
+
+    <p style="text-align:center;" id="joinText">
+        Unterstützt Java & Bedrock Edition
+    </p>
+
+    <div class="buttons" style="margin-top:30px;">
+        <button class="btn primary" onclick="copyIP()">IP kopieren</button>
+        <a href="STORE_LINK" class="btn secondary">Store</a>
+    </div>
+</section>
+
+<footer>
+    © 2026 Vyxaro Network
+</footer>
+
+<script>
+let german = true;
+
+function copyIP(){
+    navigator.clipboard.writeText("play.vyxaro.net");
+    alert("Server IP copied!");
+}
+
+function toggleLang(){
+    german = !german;
+
+    if(german){
+        document.getElementById("heroText").innerText =
+            "Dein nächstes Minecraft Minigame Abenteuer";
+
+        document.getElementById("aboutTitle").innerText = "Über uns";
+        document.getElementById("aboutText").innerText =
+            "Vyxaro ist ein modernes Minecraft Minigame Network mit innovativen Spielmodi, kompetitiven Systemen und einer aktiven Community.";
+
+        document.getElementById("gamesTitle").innerText = "Spielmodi";
+        document.getElementById("joinTitle").innerText = "Jetzt beitreten";
+        document.getElementById("joinText").innerText =
+            "Unterstützt Java & Bedrock Edition";
+
+        document.getElementById("playBtn").innerText = "Jetzt spielen";
+    } else {
+        document.getElementById("heroText").innerText =
+            "Your next Minecraft minigame adventure";
+
+        document.getElementById("aboutTitle").innerText = "About us";
+        document.getElementById("aboutText").innerText =
+            "Vyxaro is a modern Minecraft minigame network featuring innovative gamemodes, competitive systems and an active community.";
+
+        document.getElementById("gamesTitle").innerText = "Gamemodes";
+        document.getElementById("joinTitle").innerText = "Join now";
+        document.getElementById("joinText").innerText =
+            "Supports Java & Bedrock Edition";
+
+        document.getElementById("playBtn").innerText = "Play now";
+    }
+}
+</script>
+
 </body>
 </html>
